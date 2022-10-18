@@ -54,8 +54,8 @@ function play(){
     // funzione che asegna colore alla cella quando si fa click
     function clickCell(){
         if(bombsPosition.includes(num)){
-            this.classList.add('red');
             console.log('hai perso');
+            endGame();
         }
         else{
             this.classList.add('blue');
@@ -64,13 +64,13 @@ function play(){
             cell.removeEventListener('click', clickCell);
             if(score === MAX_ATTEMPT){
                 console.log('hai vinto');
+                 endGame();
             }
         }
     }
     cell.addEventListener('click', clickCell);
     return cell;
 }
-
     // funzione che genera griglia di gioco
     function drawGrid(){
         const grid = document.createElement('div');
@@ -82,6 +82,18 @@ function play(){
         playground.appendChild(grid);
     }
     drawGrid();
+
+    // funnzione che scopre tutte le bombe nascoste
+    function endGame(){
+        const allCell = document.querySelectorAll('.square');
+        for(let i = 0; i < allCell.length; i++){
+            let num = i + 1;
+            if(bombsPosition.includes(num)){
+                allCell[i].classList.add('red');
+            }
+            allCell[i].classList.add('click-none');
+        }
+    }
 };
 playButton.addEventListener('click', play);
 
