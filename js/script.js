@@ -4,6 +4,12 @@
 
 const playButton = document.getElementById('play');
 function play(){
+
+    const textGame = document.getElementById('text-game');
+    textGame.innerHTML = '';
+    const textLost = document.getElementById('text-lost');
+    textLost.innerHTML = '';
+
     let numCell;
     const playground = document.getElementById('bomb-game');
     playground.innerHTML = '';
@@ -54,7 +60,6 @@ function play(){
     // funzione che asegna colore alla cella quando si fa click
     function clickCell(){
         if(bombsPosition.includes(num)){
-            console.log('hai perso');
             endGame();
         }
         else{
@@ -62,8 +67,8 @@ function play(){
             score++;
             console.log('punteggio attuale ' + score);
             cell.removeEventListener('click', clickCell);
+            textGame.innerHTML = 'Punteggio : ' + score ;
             if(score === MAX_ATTEMPT){
-                console.log('hai vinto');
                  endGame();
             }
         }
@@ -92,6 +97,14 @@ function play(){
                 allCell[i].classList.add('red');
             }
             allCell[i].classList.add('click-none');
+        }
+        if(score === MAX_ATTEMPT){
+            console.log('hai vinto');
+            textLost.innerHTML = 'Hai Vinto!';
+        } 
+        else{
+            console.log('hai perso');
+            textLost.innerHTML = 'Hai Perso!';
         }
     }
 };

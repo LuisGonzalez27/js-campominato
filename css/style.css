@@ -11,8 +11,11 @@ header, footer{
     background-color: var(--white-snow);
     height: 80px;
 }
+body{
+    background-color: var(--white-snow);
+}
 main{
-    height: calc(100vh - 160px);
+    height: calc(100vh - 150px);
     overflow-y: auto;
     background-color: var(--oxford-blue);
 }
@@ -38,7 +41,7 @@ main{
     background-color: var(--red-crismon);
 }
 footer{
-    width: 50%;
+    width: 100%;
     position: fixed;
     bottom: 0;
 }
