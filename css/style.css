@@ -42,3 +42,6 @@ footer{
     position: fixed;
     bottom: 0;
 }
+.click-none {
+    pointer-events: none;
+}
