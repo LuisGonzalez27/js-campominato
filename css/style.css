@@ -1,0 +1,44 @@
+:root{
+    --black : #191919;
+    --white-snow: #FFF7F8;
+    --acquamarine: #7fffd4;
+    --oxford-blue: #02182b;
+    --blue-dodger: #0197F6;
+    --red-crismon: #D7263D;
+    --blue-munsell: #448FA3;
+}
+header, footer{
+    background-color: var(--white-snow);
+    height: 80px;
+}
+main{
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+    background-color: var(--oxford-blue);
+}
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 500px;
+    height: 500px;
+    background-color: var(--acquamarine);
+}
+.square{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid var(--oxford-blue);
+}
+.blue{
+    background-color: var(--blue-dodger);
+}
+.red{
+    background-color: var(--red-crismon);
+}
+footer{
+    width: 50%;
+    position: fixed;
+    bottom: 0;
+}
