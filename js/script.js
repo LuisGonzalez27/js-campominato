@@ -10,6 +10,8 @@ function play(){
     // numero di bombe default a 16
     const NUM_BOMB = 16;
     const bombsPosition = [];
+    // punteggio iniziale
+    let score = 0;
 
     const levelHtml = document.getElementById('livello');
     const level = levelHtml.value;
@@ -26,7 +28,7 @@ function play(){
             numCell = 49;
             break;
     }
-    // si posizionano le bombe in modo random
+    // si creano le bombe e si posizionano in modo random
     while(bombsPosition.length < NUM_BOMB){
         const bomb = randomNumber(1,numCell);
         if(!bombsPosition.includes(bomb)){
@@ -34,7 +36,9 @@ function play(){
         }
     }
     console.log(bombsPosition);
-    
+    // punteggio da raggiungere
+    const MAX_ATTEMPT = numCell - NUM_BOMB;
+    console.log('punteggio da raggiungere per vincere : ' + MAX_ATTEMPT);
     // funzione che genera la cella
     function  drawCell(num) {
         const cellUp = Math.sqrt(numCell);
@@ -47,19 +51,26 @@ function play(){
             <span>${num}</span>
         `;
 
-    // evento di cambio colore della cella
-        cell.addEventListener('click', function(){
-            if(bombsPosition.includes(num)){
-                this.classList.add('red');
-                // alert('Hai perso riprova!');
-                // window.location.reload();
+    // funzione che asegna colore alla cella quando si fa click
+    function clickCell(){
+        if(bombsPosition.includes(num)){
+            this.classList.add('red');
+            console.log('hai perso');
+        }
+        else{
+            this.classList.add('blue');
+            score++;
+            console.log('punteggio attuale ' + score);
+            cell.removeEventListener('click', clickCell);
+            if(score === MAX_ATTEMPT){
+                console.log('hai vinto');
             }
-            else{
-                this.classList.add('blue');
-            }
-        });
-        return cell;
+        }
     }
+    cell.addEventListener('click', clickCell);
+    return cell;
+}
+
     // funzione che genera griglia di gioco
     function drawGrid(){
         const grid = document.createElement('div');
